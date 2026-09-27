@@ -1,69 +1,164 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Case Battle</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <title>CASE BATTLE — V3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-  <header>
-    <div>
-      <div class="logo">CASE<span>BATTLE</span></div>
-      <div class="sub">MINI APP</div>
+  <div class="bg-glow glow-a"></div>
+  <div class="bg-glow glow-b"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">CB</div>
+      <div>
+        <div class="brand-name">CASE<span>BATTLE</span></div>
+        <div class="brand-sub">CASE OPENING</div>
+      </div>
     </div>
-    <div class="balance">💰 <b id="balance">2500</b></div>
+    <div class="balance-pill">
+      <span class="coin">◆</span>
+      <span id="balance">5000</span>
+    </div>
   </header>
 
   <main>
-    <section id="home" class="screen active">
+    <section id="casesPage" class="page active">
       <div class="hero">
-        <div class="case-glow"></div>
-        <div class="case">🔒</div>
-        <h1>Night Case</h1>
-        <p>Открывай кейсы и собирай коллекцию</p>
-        <button id="openBtn" class="primary">ОТКРЫТЬ КЕЙС · 250 💰</button>
+        <div>
+          <div class="eyebrow">NEW VERSION 3.0</div>
+          <h1>Открывай.<br><span>Выбивай редкое.</span></h1>
+          <p>Четыре кейса, рулетка выпадения, инвентарь и продажа предметов за игровую валюту.</p>
+        </div>
+        <div class="hero-badge">
+          <b>⚡</b>
+          <span>FAST<br>DROP</span>
+        </div>
       </div>
 
-      <div class="section-title">Возможный дроп</div>
-      <div id="previewGrid" class="grid"></div>
+      <div class="section-title">
+        <div>
+          <h2>КЕЙСЫ</h2>
+          <p>Выбери кейс и попробуй забрать легендарный предмет</p>
+        </div>
+      </div>
+
+      <div id="caseGrid" class="case-grid"></div>
     </section>
 
-    <section id="inventory" class="screen">
-      <div class="page-title">Мой инвентарь</div>
-      <div id="inventoryGrid" class="grid"></div>
+    <section id="inventoryPage" class="page">
+      <div class="page-head">
+        <div>
+          <div class="eyebrow">YOUR COLLECTION</div>
+          <h1>Инвентарь</h1>
+        </div>
+        <div class="inventory-count"><span id="inventoryCount">0</span> предметов</div>
+      </div>
+
+      <div class="toolbar">
+        <button class="filter active" data-filter="all">Все</button>
+        <button class="filter" data-filter="common">Обычные</button>
+        <button class="filter" data-filter="rare">Редкие</button>
+        <button class="filter" data-filter="epic">Эпические</button>
+        <button class="filter" data-filter="legendary">Легендарные</button>
+      </div>
+
+      <div id="inventoryGrid" class="inventory-grid"></div>
     </section>
 
-    <section id="battle" class="screen">
-      <div class="page-title">Battle</div>
+    <section id="battlePage" class="page">
+      <div class="page-head">
+        <div>
+          <div class="eyebrow">1V1 ARENA</div>
+          <h1>Battle</h1>
+        </div>
+      </div>
+
       <div class="battle-card">
-        <div class="player"><span>YOU</span><strong>⚡</strong></div>
-        <div class="vs">VS</div>
-        <div class="player"><span>BOT</span><strong>🤖</strong></div>
+        <div class="battle-title">BATTLE VS BOT</div>
+        <p>Внеси 500 ◆ и сравни силу случайного предмета с ботом. Победитель получает 900 ◆.</p>
+
+        <div class="fighters">
+          <div class="fighter">
+            <div class="fighter-icon">👤</div>
+            <b>YOU</b>
+            <span id="playerPower">—</span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="fighter">
+            <div class="fighter-icon bot">🤖</div>
+            <b>BOT</b>
+            <span id="botPower">—</span>
+          </div>
+        </div>
+
+        <button id="battleBtn" class="primary-btn">ВСТУПИТЬ В BATTLE · 500 ◆</button>
+        <div id="battleMessage" class="battle-message"></div>
       </div>
-      <button id="battleBtn" class="primary">НАЧАТЬ BATTLE · 500 💰</button>
-      <p class="hint">Демо-режим: бой происходит локально. Для настоящих PvP боёв нужен сервер.</p>
+
+      <div class="mini-info">
+        <div><b>⚡</b><span>Быстрый матч</span></div>
+        <div><b>🎯</b><span>Случайная сила</span></div>
+        <div><b>🏆</b><span>900 ◆ за победу</span></div>
+      </div>
     </section>
   </main>
 
-  <nav>
-    <button data-screen="home" class="nav active">🏠<span>Кейсы</span></button>
-    <button data-screen="inventory" class="nav">🎒<span>Инвентарь</span></button>
-    <button data-screen="battle" class="nav">⚔️<span>Battle</span></button>
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="casesPage">
+      <span>▣</span><small>Кейсы</small>
+    </button>
+    <button class="nav-btn" data-page="inventoryPage">
+      <span>◈</span><small>Инвентарь</small>
+    </button>
+    <button class="nav-btn" data-page="battlePage">
+      <span>⚔</span><small>Battle</small>
+    </button>
   </nav>
-</div>
 
-<div id="modal" class="modal hidden">
-  <div class="modal-card">
-    <div class="rarity" id="resultRarity">LEGENDARY</div>
-    <div id="resultImage" class="result-image">🔪</div>
-    <h2 id="resultName">Karambit</h2>
-    <p id="resultText">Предмет добавлен в инвентарь</p>
-    <button id="closeModal" class="primary">ЗАБРАТЬ</button>
+  <div id="openModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card opening-card">
+      <button class="close-modal" id="closeOpenModal">×</button>
+      <div class="modal-eyebrow" id="modalCaseName">OPENING</div>
+      <h2>Что выпадет?</h2>
+
+      <div class="roulette-window">
+        <div class="roulette-marker"></div>
+        <div id="rouletteTrack" class="roulette-track"></div>
+      </div>
+
+      <div class="roulette-status" id="rouletteStatus">Рулетка запускается...</div>
+      <button id="skipBtn" class="secondary-btn hidden">ПОКАЗАТЬ РЕЗУЛЬТАТ</button>
+    </div>
   </div>
-</div>
-<script src="game.js"></script>
+
+  <div id="resultModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card result-card">
+      <div class="win-flare"></div>
+      <div class="modal-eyebrow">ITEM RECEIVED</div>
+      <div id="resultIcon" class="result-icon">🔪</div>
+      <div id="resultRarity" class="rarity-label">LEGENDARY</div>
+      <h2 id="resultName">Karambit Gold</h2>
+      <div class="result-price">◆ <span id="resultPrice">2500</span></div>
+      <p>Предмет добавлен в твой инвентарь.</p>
+      <div class="result-actions">
+        <button id="sellResultBtn" class="secondary-btn">ПРОДАТЬ · <span id="sellResultPrice">2500</span> ◆</button>
+        <button id="keepResultBtn" class="primary-btn">ЗАБРАТЬ В ИНВЕНТАРЬ</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
